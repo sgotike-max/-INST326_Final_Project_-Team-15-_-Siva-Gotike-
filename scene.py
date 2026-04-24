@@ -6,14 +6,17 @@ class Scene:
     Claim: composition of two custom classes. Scene stores other scenes inside self.next_scenes.
     """
     def __init__(self, prose, choices):
+        ## initializes with prose and choices
         self.prose = prose
         self.choices = choices
         self.next_scenes = {}
 
     def add_next(self, choice_number, scene):
+        ## goes to the next scene based on the choice number
         self.next_scenes[choice_number] = scene
 
     def display(self):
+        ## displays the prose and choices to the user
         print(self.prose)
         print()
         count = 1
@@ -22,6 +25,7 @@ class Scene:
             count = count + 1
 
     def get_choice(self):
+        ## gets the user's input and returns the next scene
         pick = input("\n> ")
         pick = int(pick)
         if pick == 1:
@@ -37,11 +41,13 @@ class Scene:
 
 
 def run_game(starting_scene):
+    ## runs the game
     current = starting_scene
     while current is not None:
         current.display()
         current = current.get_choice()
 
+## the scenes below:
 opening = Scene(
     "You stand at the entrance to a collapsed rail tunnel. Water drips somewhere ahead. A faded sign reads MAINTENANCE ONLY.",
     [
@@ -69,6 +75,7 @@ sign = Scene(
     ]
 )
 
+## the connections between the scenes:
 opening.add_next(1, inside)
 opening.add_next(2, sign)
 
