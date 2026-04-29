@@ -1,53 +1,53 @@
 class Scene:
-    """
-    a scene that contains prose, a list of choices and a dict of next scenes.
-
-    Created by: Mark
-    Claim: composition of two custom classes. Scene stores other scenes inside self.next_scenes.
-    """
     def __init__(self, prose, choices):
-        ## initializes with prose and choices
         self.prose = prose
         self.choices = choices
         self.next_scenes = {}
 
     def add_next(self, choice_number, scene):
-        ## goes to the next scene based on the choice number
-        self.next_scenes[choice_number] = scene
+        self.next_scenes[choice_number] = scene  
+        # composition: Scene stores Scene objects | Claimed by: mark_kuo
 
-    def display(self):
-        ## displays the prose and choices to the user
-        print(self.prose)
-        print()
+    def __str__(self):  
+        # magic method: string representation of Scene | claimed by: mark_kuo
+        result = self.prose + "\n"
         count = 1
         for choice in self.choices:
-            print(str(count) + ") " + choice)
+            result = result + "\n" + str(count) + ") " + choice
             count = count + 1
+        return result
+
+    def __len__(self):  
+        # magic method: returns number of choices | claimed by: mark_kuo
+        return len(self.choices)
 
     def get_choice(self):
-        ## gets the user's input and returns the next scene
-        pick = input("\n> ")
-        pick = int(pick)
-        if pick == 1:
-            return self.next_scenes[1]
-        elif pick == 2:
-            return self.next_scenes[2]
-        elif pick == 3:
-            return self.next_scenes[3]
-        elif pick == 4:
-            return self.next_scenes[4]
-        else:
-            print("Invalid choice.")
+        while True:
+            pick = input("\n> ")
+            try:
+                pick = int(pick)
+            except ValueError:
+                print("Enter a number.")
+                continue
+            if pick < 1 or pick > len(self):
+                print("Pick between 1 and " + str(len(self)) + ".")
+                continue
+            if pick not in self.next_scenes:
+                print("That path isn't available yet.")
+                continue
+            return self.next_scenes[pick]
 
 
 def run_game(starting_scene):
-    ## runs the game
     current = starting_scene
     while current is not None:
-        current.display()
+        print(current)
         current = current.get_choice()
+    print("\nEnd of the road.")
 
-## the scenes below:
+
+# --- example setup ---
+
 opening = Scene(
     "You stand at the entrance to a collapsed rail tunnel. Water drips somewhere ahead. A faded sign reads MAINTENANCE ONLY.",
     [
@@ -75,10 +75,11 @@ sign = Scene(
     ]
 )
 
-## the connections between the scenes:
 opening.add_next(1, inside)
 opening.add_next(2, sign)
 
+
 sign.add_next(1, inside)
+
 
 run_game(opening)
