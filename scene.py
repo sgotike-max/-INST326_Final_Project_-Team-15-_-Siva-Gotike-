@@ -1,52 +1,6 @@
-class Scene:
-    def __init__(self, prose, choices):
-        self.prose = prose
-        self.choices = choices
-        self.next_scenes = {}
+from engine import Scene
 
-    def add_next(self, choice_number, scene):
-        self.next_scenes[choice_number] = scene  
-        # composition: Scene stores Scene objects | Claimed by: mark_kuo
-
-    def __str__(self):  
-        # magic method: string representation of Scene | claimed by: mark_kuo
-        result = self.prose + "\n"
-        count = 1
-        for choice in self.choices:
-            result = result + "\n" + str(count) + ") " + choice
-            count = count + 1
-        return result
-
-    def __len__(self):  
-        # magic method: returns number of choices | claimed by: mark_kuo
-        return len(self.choices)
-
-    def get_choice(self):
-        while True:
-            pick = input("\n> ")
-            try:
-                pick = int(pick)
-            except ValueError:
-                print("Enter a number.")
-                continue
-            if pick < 1 or pick > len(self):
-                print("Pick between 1 and " + str(len(self)) + ".")
-                continue
-            if pick not in self.next_scenes:
-                print("That path isn't available yet.")
-                continue
-            return self.next_scenes[pick]
-
-
-def run_game(starting_scene):
-    current = starting_scene
-    while current is not None:
-        print(current)
-        current = current.get_choice()
-    print("\nEnd of the road.")
-
-
-# --- example setup ---
+# --- castle heist ---
 
 approach = Scene(
     "The castle sits on a ridge above the river. Three towers, outer wall, one gate. The gate is guarded. You crouch in the treeline and consider your options.",
@@ -254,6 +208,3 @@ find_key.add_next(3, take_all)
 take_chest.add_next(1, escape)
 take_docs.add_next(1, escape)
 take_all.add_next(1, escape)
-
-
-run_game(approach)
