@@ -21,5 +21,7 @@ General Programming Resources
 Atribution Table
 
 | Name | Claim | Location |
+
 | Mark Kuo | magic methods | def_len and def_str |
+
 | Mark Kuo | function storing objects | self.next_scene |
