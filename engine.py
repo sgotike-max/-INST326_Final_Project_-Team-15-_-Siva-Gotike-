@@ -1,13 +1,15 @@
 class Scene:
+    """The engine of the game."""
+
     def __init__(self, prose, choices):
         self.prose = prose
         self.choices = choices
-        self.next_scenes = {}
+        self.next_scenes = {}  # composition: Scene stores Scene objects (claimed by mark kuo)
 
     def add_next(self, choice_number, scene):
         self.next_scenes[choice_number] = scene
 
-    def __str__(self):
+    def __str__(self):  # magic method: string representation of Scene (claimed by mark kuo)
         result = self.prose + "\n"
         count = 1
         for choice in self.choices:
@@ -15,7 +17,7 @@ class Scene:
             count = count + 1
         return result
 
-    def __len__(self):
+    def __len__(self):  # magic method: returns number of choices (claimed by mark kuo)
         return len(self.choices)
 
     def get_choice(self):
@@ -38,6 +40,6 @@ class Scene:
 def run_game(starting_scene):
     current = starting_scene
     while current is not None:
+        print()
         print(current)
         current = current.get_choice()
-    print("\nEnd of the road.")
