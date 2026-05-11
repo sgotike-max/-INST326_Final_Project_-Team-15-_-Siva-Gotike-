@@ -17,3 +17,9 @@ Class Notes and Lecture Slides(In the lectures)
 	Used to guide the structure of the program and apply concepts learned in class.
 General Programming Resources
 	Used for help with logic, debugging, and organizing code into modules.
+
+Atribution Table
+
+| Name | Claim | Location |
+| Mark Kuo | magic methods | def_len and def_str |
+| Mark Kuo | function storing objects | self.next_scene |
