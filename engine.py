@@ -1,3 +1,5 @@
+from player import Player
+
 class Scene:
     """The engine of the game."""
 
