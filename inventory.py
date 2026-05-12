@@ -1,7 +1,3 @@
-# inventory.py
-# Devin Akyen - INST 326 Final Project Team 15
-
-
 class Inventory:
     """Stores and manages items the player is carrying."""
 
