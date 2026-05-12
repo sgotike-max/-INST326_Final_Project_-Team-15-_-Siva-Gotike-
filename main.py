@@ -5,7 +5,7 @@ from engine import run_game
 
 
 def main():
-    """Run the game starting from the approach scene."""
+    "Run the game starting from the approach scene."
     run_game(approach)
 
 
