@@ -20,7 +20,7 @@ class Scene:
     def __len__(self):  # magic method: returns number of choices (claimed by mark kuo)
         return len(self.choices)
 
-    def get_choice(self):
+    def get_choice(self,player):
         while True:
             pick = input("\n> ")
             try:
@@ -38,8 +38,14 @@ class Scene:
 
 
 def run_game(starting_scene):
+    name = input("Enter your name:")
+    player = Player(name)
     current = starting_scene
     while current is not None:
         print()
+        player.show_status()
         print(current)
-        current = current.get_choice()
+        if not player:
+            print("\n--- GAME OVER ---")
+            break
+        current = current.get_choice(player)
