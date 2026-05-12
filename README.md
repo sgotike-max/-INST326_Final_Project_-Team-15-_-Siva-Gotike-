@@ -20,7 +20,7 @@ General Programming Resources
 
 Atribution Table
 
-| Name | Claim | Location |
+| Siva Gotike | Created the run_game() function and helped connect scenes through player choices | scenes.py |
 
 | Mark Kuo | magic methods | def_len and def_str |
 
