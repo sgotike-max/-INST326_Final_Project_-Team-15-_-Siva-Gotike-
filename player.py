@@ -39,7 +39,10 @@ class Player:
     def has_item(self, item):
         """Check if the player is carrying a specific item.
         """
-        return item in self.inventory
+        result = item in self.inventory
+        print(f"{'Found' if result else 'Missing'}: {item}")
+        return result
+
 
     def show_status(self):
         """Print the player's current health and inventory."""
