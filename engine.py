@@ -22,6 +22,10 @@ class Scene:
     def __len__(self):  # magic method: returns number of choices (claimed by mark kuo)
         return len(self.choices)
 
+    def on_enter(self, player):
+    """ Called when player enters this scene."""
+    pass
+
     def get_choice(self,player):
         while True:
             pick = input("\n> ")
@@ -36,7 +40,33 @@ class Scene:
             if pick not in self.next_scenes:
                 print("That path isn't available yet.")
                 continue
-            return self.next_scenes[pick]
+            next_scene = self.next_scenes[pick]
+            next_scene.on_enter(player)
+            return next_scene
+
+class ChallengeScene(Scene):
+    """A scene where the player takes damage but survives."""
+    def __init__(self, prose, choices, damage=30):
+        """Initialize with damage amount.
+        """
+        super().__init__(prose, choices)
+        self.damage = damage
+    def on_enter(self, player):
+        """Deal damage when player enters."""
+        player.take_damage(self.damage)
+
+
+class LootScene(Scene):
+    """A scene where the player picks up an item."""
+    def __init__(self, prose, choices, loot):
+        """Initialize with loot item.
+        """
+        super().__init__(prose, choices)
+        self.loot = loot
+   
+    def on_enter(self, player):
+        """Give player the loot when they enter."""
+        player.pick_up(self.loot)
 
 
 def run_game(starting_scene):
