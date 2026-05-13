@@ -1,4 +1,4 @@
-from engine import Scene
+from engine import Scene, ChallengeScene, LootScene
 
 
  
