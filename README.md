@@ -28,4 +28,4 @@ Atribution Table
 
 | Devin Akyen| | Created game_state.py | including player tracking, run summaries, play style analysis, and attempt management |
 
-
+| Miabonita Tebo | Edited inventory.py|
