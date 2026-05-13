@@ -47,7 +47,8 @@ def run_game(starting_scene):
         print()
         player.show_status()
         print(current)
+        current = current.get_choice(player)
         if not player:
             print("\n--- GAME OVER ---")
             break
-        current = current.get_choice(player)
+        
