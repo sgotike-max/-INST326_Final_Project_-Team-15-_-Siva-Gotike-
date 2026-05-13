@@ -25,3 +25,7 @@ Atribution Table
 | Mark Kuo | magic methods | def_len and def_str |
 
 | Mark Kuo | function storing objects | self.next_scene |
+
+| Devin Akyen| | Created game_state.py | including player tracking, run summaries, play style analysis, and attempt management |
+
+
